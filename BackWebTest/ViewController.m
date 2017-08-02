@@ -58,6 +58,9 @@
 }
 - (IBAction)reload:(id)sender {
     [self.webview reload];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.webview loadRequest: [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]]];
+    });
 }
 
 - (IBAction)back:(id)sender {
